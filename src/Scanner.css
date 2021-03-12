@@ -1,0 +1,269 @@
+.Scanner-root {
+  height: calc(100vh - 56px - 45px);
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.Scanner-root .Spinner {
+  color: var(--secondary-bg-color) !important;
+}
+
+.Scanner-root .Scanner-view {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Scanner-root .Scanner-view .Scanner-pad {
+  padding: 3rem 1rem;
+  background-color: gainsboro;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+    0px 4px 5px 0px rgb(0 0 0 / 14%),
+    0px 1px 10px 0px rgb(0 0 0 / 12%);
+}
+
+.Scanner-root .Scanner-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.Scanner-root .Tab-container {
+  height: 75vh;
+  width: 85%;
+}
+
+.Scanner-root .Tab-container .Panel-container {
+  height: calc(100% - 48px);
+}
+
+.Scanner-root .Submission-view .Submission-container {
+  transition: transform .2s;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  border: 1px solid gainsboro;
+  margin-bottom: 1rem;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 
+    0px 4px 5px 0px rgb(0 0 0 / 14%), 
+    0px 1px 10px 0px rgb(0 0 0 / 12%);
+}
+
+.Scanner-root .Submission-view .Submission-container:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+
+.Scanner-root .Submission-view .Submission-container .Submission-header {
+  width: 25px;
+  color: var( --secondary-bg-color-darkest);
+  text-align: center;
+  background-color: gainsboro;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.Scanner-root .Submission-view .Submission-container .Submission-result {
+  width: 85%;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Scanner-root .Submission-view .Submission-container .Submission-result .Submission {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Scanner-root .Tab-container .react-swipeable-view-container {
+  height: 100%;
+}
+
+.Scanner-root .Tab-container .Tab-bar {
+  background-color: gainsboro;
+}
+
+.Scanner-root .Tab-container .Tab-bar .Review-tab,
+.Scanner-root .Tab-container .Tab-bar .Submissions-tab {
+  color: var(--secondary-bg-color-darkest);
+}
+
+.Scanner-root .Tab-container .MuiTabs-indicator {
+  background-color: var(--secondary-bg-color-darkest);
+}
+
+.Scanner-root .Scanner-container .Scanner div {
+  box-shadow: var(--secondary-bg-color) 0px 0px 0px 5px inset !important;
+}
+
+.Scanner-root .Scanner-view .Instruction-container {
+  text-align: center;
+  max-width: 500px;
+}
+
+.Scanner-root .Transaction-view {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Scanner-root .Transaction-view .Transaction-card {
+  width: 100%;
+  border: solid 1px gainsboro;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 
+    0px 4px 5px 0px rgb(0 0 0 / 14%), 
+    0px 1px 10px 0px rgb(0 0 0 / 12%);
+  padding: 1rem;
+  position: relative;
+}
+
+.Scanner-root .Transaction-view .Transaction-card .Transaction-header {
+  border-bottom: solid 1px gainsboro;
+  margin-bottom: 0.5rem;
+}
+
+.Scanner-root .Transaction-view .Network-select-container,
+.Scanner-root .Transaction-view .B64-container {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.Scanner-root .Transaction-view .Network-select-container .MuiSelect-select.MuiSelect-select {
+  text-align: center;
+}
+
+.Scanner-root .Transaction-view .B64-container {
+  border-bottom: solid 1px gainsboro;
+}
+
+.Scanner-root .Transaction-view .Network-select-container .Network-select-label-container,
+.Scanner-root .Transaction-view .B64-container .B64-label {
+  width: 85px
+}
+
+.Scanner-root .Transaction-view .Network-select-container .Network-select-select-container,
+.Scanner-root .Transaction-view .Network-select-container .Form-control,
+.Scanner-root .Transaction-view .B64-container .B64-data {
+  width: 100%;
+}
+
+.Scanner-root .Transaction-view .Network-select-container .Network-select-selector {
+  width: 100%;
+}
+
+.Scanner-root .Transaction-view .B64-container .B64-data {
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+}
+
+.Scanner-root .Transaction-view .Transaction-button-container {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.Scanner-root .Transaction-view .Transaction-button-container .Transaction-button {
+  background-color: var(--secondary-bg-color);
+  color: white;
+  width: 100%;
+  min-height: 45px;
+}
+
+.Scanner-root .Transaction-view .Transaction-button-container .Transaction-button.bg-green {
+  background-color: var(--success-green) !important;
+}
+
+.Scanner-root .Transaction-view .Transaction-button-container .Transaction-button.bg-red {
+  background-color: var(--error-red) !important;
+}
+
+.Scanner-root .Transaction-view .Transaction-button-container .Transaction-button.Mui-disabled {
+  color: rgba(255, 255, 255, 0.3);
+  box-shadow: none;
+  background-color: var(--secondary-bg-color-darker);
+}
+
+.Scanner-root .Transaction-view .Transaction-button-container .Transaction-progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+  color: var(--main-bg-color);
+}
+
+.Scanner-root .Transaction-view .Scan-again {
+  position: absolute;
+  bottom: -30px;
+  right: 0;
+  color: var(--secondary-bg-color-darkest);
+}
+
+.Scanner-root .Transaction-view .Scan-again:hover {
+  color: var(--secondary-bg-color-darker);
+  cursor: pointer;
+}
+
+.MuiBadge-anchorOriginTopRightRectangle.MuiBadge-invisible {
+  transform: none;
+}
+
+.MuiBadge-anchorOriginTopRightRectangle {
+  top: -10px !important;
+  right: -10px !important;
+} 
+
+.MuiTab-textColorPrimary.Mui-disabled {
+  color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid var(--secondary-bg-color-darker) !important;
+}
+
+.kill {
+  display: none !important
+}
+
+@media (min-width: 600px) {
+  .Scanner-root {
+    align-items: center;
+    display: flex;
+    height: calc(100vh - 64px - 35px);
+    width: 90%;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .Scanner-root .Transaction-view .Transaction-card {
+    width: 500px;
+  }
+
+  .Scanner-root .Tab-container {
+    height: 75vh;
+    width: 575px;
+  }  
+
+  .Scanner-root .Submission-view .Submission-container .Submission-result {
+    font-size: 1rem;
+  }
+
+  .Scanner-root .Submission-view .Submission-container .Submission-result {
+    width: 100%;
+  }
+}

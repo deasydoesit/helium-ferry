@@ -1,0 +1,30 @@
+.HeaderBar-root {
+  flex-grow: 1;
+  color: var(--text-color);
+}
+
+.HeaderBar-root .ToolBar-root {
+  background-color: var(--main-bg-color) !important;
+}
+
+.HeaderBar-root .Title-root {
+  flex-grow: 1;
+}
+
+.HeaderBar-root .Title {
+  display: inline-block;
+}
+
+.HeaderBar-root .Emoji {
+  display: inline-block;
+  font-size: 1.5rem;
+}
+
+.HeaderBar-root .CustomButton {
+  background-color: var(--secondary-bg-color);
+  color: white
+}
+
+.HeaderBar-root .CustomButton:hover {
+  background-color: var(--secondary-bg-color-darker);
+}
