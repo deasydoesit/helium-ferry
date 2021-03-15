@@ -37,6 +37,11 @@
   margin-bottom: 2rem;
 }
 
+.Scanner-root .Scanner-container .Scanner {
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+  border-radius: 5px;
+}
+
 .Scanner-root .Tab-container {
   height: 75vh;
   width: 85%;
@@ -106,6 +111,10 @@
 
 .Scanner-root .Scanner-container .Scanner div {
   box-shadow: var(--secondary-bg-color) 0px 0px 0px 5px inset !important;
+}
+
+.Scanner-root .Scanner-container .Scanner section {
+  border-radius: 5px;
 }
 
 .Scanner-root .Scanner-view .Instruction-container {
