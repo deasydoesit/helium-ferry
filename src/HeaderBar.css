@@ -22,9 +22,31 @@
 
 .HeaderBar-root .CustomButton {
   background-color: var(--secondary-bg-color);
-  color: white
+  color: white;
 }
 
 .HeaderBar-root .CustomButton:hover {
   background-color: var(--secondary-bg-color-darker);
+}
+
+.HeaderBar-root .button-container .display-large {
+  display: none;
+}
+
+.HeaderBar-root .button-container .display-small {
+  display: inline-block;
+}
+
+.HeaderBar-root .button-container .display-large a:last-child {
+  margin-left: 0.5rem;
+}
+
+@media (min-width: 600px) {
+  .HeaderBar-root .button-container .display-large {
+    display: inline-block;
+  }
+
+  .HeaderBar-root .button-container .display-small {
+    display: none;
+  }
 }

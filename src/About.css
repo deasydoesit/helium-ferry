@@ -28,6 +28,7 @@
 .About-root .Title-container .Title {
   font-weight: 600;
   text-align: center;
+  font-size: 2.5rem;
 }
 
 .About-root .Imagery-container {
@@ -101,18 +102,18 @@
   }
 
   .About-root .Headline-container {
-    width: 90%;
+    width: 100%;
     border-bottom: 2px solid var(--secondary-bg-color-darker);
     border-right: none;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 0;
   }
 
   .About-root .Description-container {
-    width: 90%;
+    width: 100%;
     border-right: none;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 0;
   }
 
   .About-root .Imagery-container .Emoji-container .Emoji {
