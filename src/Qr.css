@@ -65,3 +65,9 @@
 .Qr-root .MuiFormControl-root:focus {
   outline: var(--secondary-bg-color-darker) auto 1px !important;
 }
+
+@media (min-width: 600px) {
+  .Qr-root {
+    height: calc(100vh - 64px - 45px) !important;
+  }
+}
