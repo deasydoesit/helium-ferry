@@ -50,8 +50,8 @@ export const HeaderBar = (): ReactElement => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <a href="/qr" className="anchor-reset">
-                    QR
+                  <a href="/encoder" className="anchor-reset">
+                    Encoder
                   </a>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
@@ -62,9 +62,9 @@ export const HeaderBar = (): ReactElement => {
               </Menu>
             </div>
             <div className="display-large">
-              <a href="/qr" className="anchor-reset">
+              <a href="/encoder" className="anchor-reset">
                 <Button className="CustomButton" variant="contained" size="large" color="inherit">
-                  QR
+                  Encoder
                 </Button>
               </a>
               <a href="/scanner" className="anchor-reset">

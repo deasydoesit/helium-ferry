@@ -10,8 +10,8 @@ export const About = (): ReactElement => (
     <div className="Headline-container">
       <div className="Headline-pad">
         <div className="Imagery-container">
-          <div className="QR-container">
-            <img src={qrCode} className="QR-image" alt="QR code pointing to www.heliumferry.com" />
+          <div className="Qr-container">
+            <img src={qrCode} className="Qr-image" alt="QR code pointing to www.heliumferry.com" />
           </div>
           <div className="Emoji-container">
             <Emoji label="ferry" symbol="⛴️" />
@@ -41,7 +41,7 @@ export const About = (): ReactElement => (
           <li className="List-item">
             Scan the QR code with Helium Ferry and review the transaction details
           </li>
-          <li className="List-item">Submit the transcation to the Helium Network, easy peasy</li>
+          <li className="List-item">Submit the transaction to the Helium Network, easy peasy</li>
         </ul>
       </div>
     </div>
