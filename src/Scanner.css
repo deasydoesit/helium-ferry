@@ -1,5 +1,5 @@
 .Scanner-root {
-  height: calc(100vh - 56px - 45px);
+  min-height: calc(100vh - 56px - 45px);
   display: flex;
   width: 95%;
   margin: 0 auto;
@@ -253,7 +253,7 @@
   .Scanner-root {
     align-items: center;
     display: flex;
-    height: calc(100vh - 64px - 45px);
+    min-height: calc(100vh - 64px - 45px);
     width: 90%;
     margin: 0 auto;
     justify-content: center;

@@ -1,24 +1,24 @@
 import React, { ReactElement, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import QRCode from 'react-qr-code';
-import './Qr.css';
+import './Encoder.css';
 
-export const Qr = (): ReactElement => {
-  const [input, setInput] = useState<string>('Input your text here for QR encoding');
+export const Encoder = (): ReactElement => {
+  const [input, setInput] = useState<string>('Input your text here for Encoder encoding');
 
   return (
-    <div className="Qr-root">
-      <div className="Qr-view">
-        <div className="Qr-pad">
-          <div className="Qr-container">
-            <QRCode size={300} value={input} />
+    <div className="Encoder-root">
+      <div className="Encoder-view">
+        <div className="Encoder-pad">
+          <div className="Encoder-container">
+            <QRCode size={350} value={input} />
           </div>
           <div className="Input-container">
             <TextField
               className="Input"
               multiline
               rows={2}
-              defaultValue="Input your text here for QR encoding ..."
+              placeholder="Input your text here for QR encoding"
               variant="outlined"
               onChange={(event) => setInput(event.target.value)}
             />
