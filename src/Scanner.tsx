@@ -17,6 +17,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import Tooltip from '@material-ui/core/Tooltip';
 import Badge from '@material-ui/core/Badge';
 import './Scanner.css';
 
@@ -71,6 +72,8 @@ const TabPanel = (props: TabPanelProps) => {
 };
 
 export const Scanner = (): ReactElement => {
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const [isCommand, setIsCommand] = useState<boolean>(false);
   const [submissionResults, setSubmissionResults] = useState<ResultsType[]>([]);
   const [scanResult, setScanResult] = useState<string | undefined>(undefined);
   const [isScannerOpen, setIsScannerOpen] = useState<boolean>(true);
@@ -96,7 +99,37 @@ export const Scanner = (): ReactElement => {
 
   const handleScan = (data: string | null): void => {
     if (data) {
-      setScanResult(data);
+      let str;
+      try {
+        const obj = JSON.parse(data);
+        if (obj.type === 'payment') {
+          str = `helium-wallet --format json pay --payee ${obj.address}=${obj.amount} --fee 35000 --nonce <INSERT>`;
+        }
+        if (obj.type === 'stake') {
+          str = `helium-wallet --format json validators stake ${obj.validator} ${obj.stakeAmount} --fee 35000`;
+        }
+        if (obj.type === 'unstake') {
+          str = `helium-wallet --format json validators unstake ${obj.validator} --stake-amount ${obj.stakeAmount} --fee 30000`;
+        }
+        if (obj.type === 'transfer accept') {
+          str = `helium-wallet --format json validators transfer accept ${obj.transaction}`;
+        }
+        if (obj.type === 'transfer create') {
+          str = `helium-wallet --format json validators transfer create ${
+            obj.amount ? `--amount ${obj.amount}` : ''
+          } ${obj.oldOwner ? `--old-owner ${obj.oldOwner}` : ''} ${
+            obj.newOwner ? `--new-owner ${obj.newOwner}` : ''
+          } --old-address ${obj.oldValidator} --new-address ${obj.newValidator} --stake-amount ${
+            obj.stakeAmount
+          } --fee 55000`;
+        }
+        if (!str) throw new Error('Encoded data is not an accepted CLI wallet command');
+        setIsCommand(true);
+      } catch (err) {
+        str = data;
+      }
+
+      setScanResult(str);
       const node = cameraRef.current;
       if (node) node.stopCamera();
 
@@ -119,6 +152,7 @@ export const Scanner = (): ReactElement => {
     if (isNoNetwork) setIsNoNetwork(false);
     if (isError) setIsError(false);
     if (isSuccess) setIsSuccess(false);
+    if (isCopied) setIsCopied(false);
     setToastText('');
   };
 
@@ -184,6 +218,16 @@ export const Scanner = (): ReactElement => {
     }
   };
 
+  const copyToClipboard = (text: string) => {
+    const ta = document.createElement('textarea');
+    ta.innerText = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+    setIsCopied(true);
+  };
+
   return (
     <div className="Scanner-root">
       {isScanning && <CircularProgress className="Spinner" />}
@@ -206,7 +250,20 @@ export const Scanner = (): ReactElement => {
           </div>
         </div>
       </div>
-      {!isScannerOpen && !isScanning && (
+      {!isScannerOpen && !isScanning && isCommand && (
+        <div className="Command-container">
+          <Tooltip title="Click to Copy">
+            <button
+              aria-label="Click to Copy"
+              className="Command-pad"
+              onClick={() => scanResult && copyToClipboard(scanResult)}
+            >
+              <div className="Command-txt">{scanResult}</div>
+            </button>
+          </Tooltip>
+        </div>
+      )}
+      {!isScannerOpen && !isScanning && !isCommand && (
         <div className="Tab-container">
           <AppBar className="Tab-bar" position="static" color="default">
             <Tabs
@@ -326,6 +383,11 @@ export const Scanner = (): ReactElement => {
       <Snackbar open={isSuccess} autoHideDuration={6000} onClose={handleToastClose}>
         <Alert variant="filled" onClose={handleToastClose} severity="success">
           Successfully submitted transaction to {network}!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={isCopied} autoHideDuration={1000} onClose={handleToastClose}>
+        <Alert variant="filled" onClose={handleToastClose} severity="success">
+          Copied!
         </Alert>
       </Snackbar>
     </div>
