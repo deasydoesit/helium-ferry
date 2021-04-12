@@ -11,7 +11,7 @@ export const Encoder = (): ReactElement => {
       <div className="Encoder-view">
         <div className="Encoder-pad">
           <div className="Encoder-container">
-            <QRCode size={350} value={input} />
+            <QRCode size={320} value={input} />
           </div>
           <div className="Input-container">
             <TextField
