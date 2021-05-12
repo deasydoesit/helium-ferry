@@ -94,10 +94,10 @@ export const Scanner = (): ReactElement => {
           str = `helium-wallet --format json pay --payee ${obj.address}=${obj.amount} --fee ${obj.fee} --nonce ${obj.nonce}`;
         }
         if (obj.type === 'stake') {
-          str = `helium-wallet --format json validators stake ${obj.validator} ${obj.stakeAmount} --fee 35000`;
+          str = `helium-wallet --format json validators stake ${obj.validator} ${obj.stakeAmount} --fee ${obj.fee}`;
         }
         if (obj.type === 'unstake') {
-          str = `helium-wallet --format json validators unstake ${obj.validator} --stake-amount ${obj.stakeAmount} --fee 30000`;
+          str = `helium-wallet --format json validators unstake ${obj.validator} --stake-release-height ${obj.stakeReleaseHeight} --stake-amount ${obj.stakeAmount} --fee ${obj.fee}`;
         }
         if (obj.type === 'transfer accept') {
           str = `helium-wallet --format json validators transfer accept ${obj.transaction}`;
@@ -109,7 +109,7 @@ export const Scanner = (): ReactElement => {
             obj.newOwner ? `--new-owner ${obj.newOwner}` : ''
           } --old-address ${obj.oldValidator} --new-address ${obj.newValidator} --stake-amount ${
             obj.stakeAmount
-          } --fee 55000`;
+          } --fee ${obj.fee}`;
         }
         if (!str) throw new Error('Encoded data is not an accepted CLI wallet command');
         setIsCommand(true);

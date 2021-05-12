@@ -16,6 +16,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
 }
 
 .Encoder-root .Encoder-container {
@@ -40,8 +41,38 @@
   width: 100%;
 }
 
+.Encoder-root .Form-container .Txn-type-select-select-container {
+  margin-bottom: 1rem;
+}
+
 .Encoder-root .Form-container .Txn-type-select-select-container .MuiFormControl-root {
   width: 100%;
+}
+
+.Encoder-root .Form-container .Amounts-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 1rem;
+}
+
+.Encoder-root .Form-container .payee-field,
+.Encoder-root .Form-container .validator-field,
+.Encoder-root .Form-container .transaction-field,
+.Encoder-root .Form-container .owner-field{
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.Encoder-root .Form-container .amount-field,
+.Encoder-root .Form-container .fee-field,
+.Encoder-root .Form-container .release-field {
+  flex-grow: 1;
+  margin-right: 0.5rem
+}
+
+.Encoder-root .Form-container .nonce-field {
+  flex-grow: 1;
 }
 
 .Encoder-root .Form-container .Input-container,
