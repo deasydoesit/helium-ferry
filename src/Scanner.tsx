@@ -19,6 +19,8 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
 import Badge from '@material-ui/core/Badge';
+import { a11yProps, timeout } from './utils';
+import { TabPanelProps } from './types';
 import './Scanner.css';
 
 const NETWORKS: { [key: string]: any } = {
@@ -36,20 +38,6 @@ interface ResultsType {
   hash: string;
   network: string;
 }
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  dir?: string;
-  index: any;
-  value: any;
-}
-
-const a11yProps = (index: any) => {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
-};
 
 const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
@@ -102,14 +90,17 @@ export const Scanner = (): ReactElement => {
       let str;
       try {
         const obj = JSON.parse(data);
+
         if (obj.type === 'payment') {
-          str = `helium-wallet --format json pay --payee ${obj.address}=${obj.amount} --fee 35000 --nonce <INSERT>`;
+          str = `helium-wallet --format json pay --payee ${obj.address}=${obj.amount} --fee ${
+            obj.fee ? obj.fee : '35000'
+          } --nonce ${obj.nonce ? obj.nonce : '<INSERT NONCE>'}`;
         }
         if (obj.type === 'stake') {
-          str = `helium-wallet --format json validators stake ${obj.validator} ${obj.stakeAmount} --fee 35000`;
+          str = `helium-wallet --format json validators stake ${obj.validator} ${obj.stakeAmount} --fee ${obj.fee}`;
         }
         if (obj.type === 'unstake') {
-          str = `helium-wallet --format json validators unstake ${obj.validator} --stake-amount ${obj.stakeAmount} --fee 30000`;
+          str = `helium-wallet --format json validators unstake ${obj.validator} --stake-release-height ${obj.stakeReleaseHeight} --stake-amount ${obj.stakeAmount} --fee ${obj.fee}`;
         }
         if (obj.type === 'transfer accept') {
           str = `helium-wallet --format json validators transfer accept ${obj.transaction}`;
@@ -121,7 +112,7 @@ export const Scanner = (): ReactElement => {
             obj.newOwner ? `--new-owner ${obj.newOwner}` : ''
           } --old-address ${obj.oldValidator} --new-address ${obj.newValidator} --stake-amount ${
             obj.stakeAmount
-          } --fee 55000`;
+          } --fee ${obj.fee}`;
         }
         if (!str) throw new Error('Encoded data is not an accepted CLI wallet command');
         setIsCommand(true);
@@ -171,10 +162,6 @@ export const Scanner = (): ReactElement => {
   };
 
   const handleSubmit = async (): Promise<void> => {
-    const timeout = (delay: number) => {
-      return new Promise((res) => setTimeout(res, delay));
-    };
-
     if (network === '') {
       setToastText('Error: Please specify a network (e.g., testnet or mainnet).');
       setIsNoNetwork(true);

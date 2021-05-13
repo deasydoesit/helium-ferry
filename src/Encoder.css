@@ -7,16 +7,128 @@
   justify-content: center;
 }
 
-.Encoder-root .Encoder-view {
-  height: 100%;
-  width: 100%;
+.Encoder-root .Form-container {
+  width: 55%;
+  margin: 2rem 0;
   display: flex;
+  padding: 1rem 3rem 1rem 1rem;
+  border-right: 2px solid var(--secondary-bg-color-darker);
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+}
+
+.Encoder-root .Encoder-container {
+  width: 45%;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 1rem 1rem 3rem;
+}
+
+.Encoder-root .Form-container .Form-pad {
+  display: flex;
+  width: 90%;
   align-items: center;
   justify-content: center;
 }
 
-.Encoder-root .Encoder-view .Encoder-pad {
+.Encoder-root .Form-container .Tab-container {
+  height: 59vh;
+  width: 100%;
+}
+
+.Encoder-root .Form-container .Txn-type-select-select-container {
+  margin-bottom: 1rem;
+}
+
+.Encoder-root .Form-container .Txn-type-select-select-container .MuiFormControl-root {
+  width: 100%;
+}
+
+.Encoder-root .Form-container .Amounts-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 1rem;
+}
+
+.Encoder-root .Form-container .payee-field,
+.Encoder-root .Form-container .validator-field,
+.Encoder-root .Form-container .transaction-field,
+.Encoder-root .Form-container .owner-field{
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.Encoder-root .Form-container .amount-field,
+.Encoder-root .Form-container .fee-field,
+.Encoder-root .Form-container .release-field {
+  flex-grow: 1;
+  margin-right: 0.5rem
+}
+
+.Encoder-root .Form-container .nonce-field {
+  flex-grow: 1;
+}
+
+.Encoder-root .Form-container .Input-container,
+.Encoder-root .Form-container .Input-container .Input {
+  width: 100%;
+}
+
+.Encoder-root .Form-container .Input-container {
+  background-color: white;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%),
+    0px 1px 10px 0px rgb(0 0 0 / 12%);
+}
+
+.Encoder-root .Form-container .QR-button-container {
+  position: relative;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Encoder-root .Form-container .QR-button-container .QR-button {
+  background-color: var(--secondary-bg-color);
+  color: white;
+  width: 50%;
+  min-height: 45px;
+}
+
+.Encoder-root .Form-container .QR-button-container .QR-button.Mui-disabled {
+  color: rgba(255, 255, 255, 0.3);
+  box-shadow: none;
+  background-color: var(--secondary-bg-color-darker);
+}
+
+.Encoder-root .Form-container .QR-button-container .Encoding-progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+  color: var(--main-bg-color);
+}
+
+.Encoder-root .Encoder-pad .Encoding-progress {
+  position: absolute;
+  top: 40%;
+  color: var(--main-bg-color);
+}
+
+.Encoder-root .Encoder-container .Encoder-pad {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,13 +136,14 @@
   width: 92%;
   max-width: 500px;
   padding: 1rem;
-  background-color: gainsboro;
+  background-color: var(--secondary-bg-color);
   border-radius: 5px;
   box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%),
     0px 1px 10px 0px rgb(0 0 0 / 12%);
+  transition: background-color 0.5s ease;
 }
 
-.Encoder-root .Encoder-container {
+.Encoder-root .QR-container {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
@@ -41,37 +154,60 @@
     0px 1px 10px 0px rgb(0 0 0 / 12%);
 }
 
-.Encoder-root .Encoder-container .Encoder-code {
+.Encoder-root .Encoder-pad.encoding {
+  background-color: var(--secondary-bg-color-darker);
+}
+
+.Encoder-root .Encoder-pad .QR-container {
+  transition: opacity 0.5s ease;
+}
+
+.Encoder-root .Encoder-pad.encoding .QR-container {
+  opacity: 0
+}
+
+.Encoder-root .QR-container .Encoder-code {
   margin-bottom: 1rem;
   width: 80%;
 }
 
-.Encoder-root .Input-container,
-.Encoder-root .Input-container .Input {
-  width: 100%;
+.Encoder-root .Form-container .Input-container .Input .MuiInputBase-root,
+.Encoder-root .Form-container .Input-container .Input .MuiFormControl-root {
+  border-color: var(--secondary-bg-color-darker) !important;
 }
-
-.Encoder-root .Input-container {
-  background-color: white;
-  padding: 0.5rem;
-  display: flex;
-  justify-content: center;
-  border-radius: 5px;
-  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%),
-    0px 1px 10px 0px rgb(0 0 0 / 12%);
-}
-
-.Encoder-root .MuiInputBase-root,
-.Encoder-root .MuiFormControl-root {
-  border-color: var(--secondary-bg-color-darker);
-}
-.Encoder-root .MuiInputBase-root:focus,
-.Encoder-root .MuiFormControl-root:focus {
+.Encoder-root .Form-container .Input-container .Input .MuiInputBase-root:focus,
+.Encoder-root .Form-container .Input-container .Input .MuiFormControl-root:focus {
   outline: var(--secondary-bg-color-darker) auto 1px !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid var(--secondary-bg-color-darker) !important;
 }
 
 @media (min-width: 600px) {
   .Encoder-root {
     min-height: calc(100vh - 64px - 45px) !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .Encoder-root {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .Encoder-root .Form-container {
+    width: 100%;
+    border-bottom: 2px solid var(--secondary-bg-color-darker);
+    border-right: none;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .Encoder-root .Encoder-container {
+    width: 100%;
+    border-right: none;
+    margin: 0 auto;
+    padding: 2rem 0;
   }
 }
