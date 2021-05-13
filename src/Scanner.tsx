@@ -90,8 +90,11 @@ export const Scanner = (): ReactElement => {
       let str;
       try {
         const obj = JSON.parse(data);
+
         if (obj.type === 'payment') {
-          str = `helium-wallet --format json pay --payee ${obj.address}=${obj.amount} --fee ${obj.fee} --nonce ${obj.nonce}`;
+          str = `helium-wallet --format json pay --payee ${obj.address}=${obj.amount} --fee ${
+            obj.fee ? obj.fee : '35000'
+          } --nonce ${obj.nonce ? obj.nonce : '<INSERT NONCE>'}`;
         }
         if (obj.type === 'stake') {
           str = `helium-wallet --format json validators stake ${obj.validator} ${obj.stakeAmount} --fee ${obj.fee}`;

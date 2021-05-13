@@ -470,10 +470,11 @@ export const Encoder = (): ReactElement => {
         </div>
       </div>
       <div className="Encoder-container">
-        <div className="Encoder-pad">
+        <div className={`Encoder-pad ${isEncoding ? 'encoding' : ''}`}>
           <div className="QR-container">
             <QRCode size={320} value={qrInput} />
           </div>
+          {isEncoding && <CircularProgress size={75} className="Encoding-progress" />}
         </div>
       </div>
     </div>
