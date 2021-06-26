@@ -97,7 +97,7 @@ export const Scanner = (): ReactElement => {
           } --nonce ${obj.nonce ? obj.nonce : '<INSERT NONCE>'}`;
         }
         if (obj.type === 'stake') {
-          str = `helium-wallet --format json validators stake ${obj.validator} ${obj.stakeAmount} --fee ${obj.fee}`;
+          str = `helium-wallet --format json validators stake one ${obj.validator} ${obj.stakeAmount} --fee ${obj.fee}`;
         }
         if (obj.type === 'unstake') {
           str = `helium-wallet --format json validators unstake ${obj.validator} --stake-release-height ${obj.stakeReleaseHeight} --stake-amount ${obj.stakeAmount} --fee ${obj.fee}`;
