@@ -92,21 +92,23 @@ export const Scanner = (): ReactElement => {
         const obj = JSON.parse(data);
 
         if (obj.type === 'payment') {
-          str = `helium-wallet --format json pay --payee ${obj.address}=${obj.amount} --fee ${
-            obj.fee ? obj.fee : '35000'
-          } --nonce ${obj.nonce ? obj.nonce : '<INSERT NONCE>'}`;
+          str = `helium-wallet -f /Volumes/RED/wallet.key.1 -f /Volumes/BLACK/wallet.key.2 --format json pay one ${
+            obj.address
+          }=${obj.amount} --fee ${obj.fee ? obj.fee : '35000'} --nonce ${
+            obj.nonce ? obj.nonce : '<INSERT NONCE>'
+          }`;
         }
         if (obj.type === 'stake') {
-          str = `helium-wallet --format json validators stake one ${obj.validator} ${obj.stakeAmount} --fee ${obj.fee}`;
+          str = `helium-wallet -f /Volumes/RED/wallet.key.1 -f /Volumes/BLACK/wallet.key.2 --format json validators stake one ${obj.validator} ${obj.stakeAmount} --fee ${obj.fee}`;
         }
         if (obj.type === 'unstake') {
-          str = `helium-wallet --format json validators unstake ${obj.validator} --stake-release-height ${obj.stakeReleaseHeight} --stake-amount ${obj.stakeAmount} --fee ${obj.fee}`;
+          str = `helium-wallet -f /Volumes/RED/wallet.key.1 -f /Volumes/BLACK/wallet.key.2 --format json validators unstake ${obj.validator} --stake-release-height ${obj.stakeReleaseHeight} --stake-amount ${obj.stakeAmount} --fee ${obj.fee}`;
         }
         if (obj.type === 'transfer accept') {
-          str = `helium-wallet --format json validators transfer accept ${obj.transaction}`;
+          str = `helium-wallet -f /Volumes/RED/wallet.key.1 -f /Volumes/BLACK/wallet.key.2 --format json validators transfer accept ${obj.transaction}`;
         }
         if (obj.type === 'transfer create') {
-          str = `helium-wallet --format json validators transfer create ${
+          str = `helium-wallet -f /Volumes/RED/wallet.key.1 -f /Volumes/BLACK/wallet.key.2 --format json validators transfer create ${
             obj.amount ? `--amount ${obj.amount}` : ''
           } ${obj.oldOwner ? `--old-owner ${obj.oldOwner}` : ''} ${
             obj.newOwner ? `--new-owner ${obj.newOwner}` : ''
